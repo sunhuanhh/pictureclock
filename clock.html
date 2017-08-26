@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片时钟</title>
+</head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	div{
+		width: 800px;
+		margin: 20px auto;
+		text-align: center;
+	}
+	img{
+		display: inline-block;
+		vertical-align: middle;
+		width: 100px;
+		height: 100px;
+	}
+	span{
+		font-size: 40px;
+		vertical-align: middle;
+		font-weight: 700;
+	}
+</style>
+<body>
+	<div>
+		<!-- 时 -->
+		<img src="images/0.png" alt="">
+		<img src="images/0.png" alt="">
+		<span>:</span>
+		<!-- 分 -->
+		<img src="images/0.png" alt="">
+		<img src="images/0.png" alt="">
+		<span>:</span>
+		<!-- 秒 -->
+		<img src="images/0.png" alt="">
+		<img src="images/0.png" alt="">
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function() {
+		var images = document.getElementsByTagName('img');
+
+		setInterval(getTime,1000);
+
+		function getTime(){
+			var time = new Date();
+			var h, m, s, times;
+			h = time.getHours();
+			m = time.getMinutes();
+			s = time.getSeconds();
+			// 拼接时间
+			times = ''+auto(h)+auto(m)+auto(s);
+			// 图片循环
+			for (var i = 0; i < images.length; i++) {
+				images[i].src = "images/"+times.charAt(i)+".png";
+			}
+		}
+		getTime();
+
+		// 小于10自动补0
+		function auto(n){
+			return n<10? '0'+n : n;
+		}
+	}
+</script>
+</html>
